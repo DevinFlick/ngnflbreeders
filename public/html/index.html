@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYE html>
 <html lang="en" ng-app="ngnflbreeders">
 <head>
   <meta charset="utf-8">
@@ -7,11 +7,44 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <div ng-controller="MainController">
-    <input type="text" ng-model="message">
-    {{message}}
+  <div class='container' ng-controller="MainController">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+          <label>Breeding Category:</label>
+          <input type="text" class="form-control" ng-model="breedingCategory">
+          <label>Breeder Sells locally, online, or both?</label>
+          <input type="text" class="form-control" ng-model="sellsTo">
+          <label>Does Breeder ship stock?</label>
+          <input type="value" class="form-control" ng-model="shipsStock">
+          <label>City, State?</label>
+          <input type="text" class="form-control" ng-model="cityState">
+          <label>Breeding Stock?</label>
+          <input type="text" class="form-control" ng-model="stockInBreeding">
+          <label>Stock currently for sale?</label>
+          <input type="text" class="form-control" ng-model="sellableStock">
+          <label>Breeder Contact Info?</label>
+          <input type="text" class="form-control" ng-model="contactBreeder">
+        </div>
+      </div>
+      <div class="col-md-8 col-md-offset-2">
+        <button class="btn btn-warning btn-block" ng-click='create(breedingCategory, sellsTo, shipsStock, cityState, stockInBreeding, sellableStock, contactBreeder)'>Create Breeder</button>
+      </div>
+    </div>
+    <div class="row" ng-repeat="eachItem in nflBreeders">
+      <div class="jumbotron" data-id={{eachItem.id}}>
+        <button class="btn btn-sm btn-danger pull-right" ng-click='delete(eachItem.id)'>x</button>
+        <h3>{{eachItem.breedingCategory}}</h3>
+        <h3>{{eachItem.sellsTo}}</h3>
+        <h3>{{eachItem.shipsStock}}</h3>
+        <h3>{{eachItem.cityState}}</h3>
+        <h3>{{eachItem.stockInBreeding}}</h3>
+        <h3>{{eachItem.sellableStock}}</h3>
+        <h3>{{eachItem.contactBreeder}}</h3>
+      </div>
+    </div>
   </div>
-  <script src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js"></script>
   <script src='js/app.js'></script>
   <script src="js/controllers/MainController.js"></script>
   <script src="js/services/NFLBreedersService.js"></script>

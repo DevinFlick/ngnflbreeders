@@ -16,25 +16,25 @@
     return o;
 
 
-    function createNFLBreeder(breedingCategoryP, sellsToP, shipsStockP, cityStateP, stockInBreedingP, sellableStockP, contactBreederP){//description from todos, you need the base info to make the "todo" or breeder
+    function createNFLBreeder(breedingCategory, sellsTo, shipsStock, cityState, stockInBreeding, sellableStock, contactBreeder){//description from todos, you need the base info to make the "todo" or breeder
       var info = {
-        breedingCategory: breedingCategoryP,
-        sellsTo: sellsToP,
-        shipsStock: shipsStockP,
-        cityState: cityStateP,
-        stockInBreeding: stockInBreedingP,
-        sellableStock: sellableStockP,
+        breedingCategory: breedingCategory,
+        sellsTo: sellsTo,
+        shipsStock: shipsStock,
+        cityState: cityState,
+        stockInBreeding: stockInBreeding,
+        sellableStock: sellableStock,
         contactBreeder: contactBreeder,
       };
       return $http.post(baseURL+"breeders", info)
                   .then(function(response){
-                    getall();
+                    getAll();
                   });
     }
     function getAll(){
       return $http.get(baseURL+'breeders')
                   .then(function(response){
-                    o.breeders = response.data;
+                    o.nflBreeders = response.data;
                   });
     }
     //var newTodo = {

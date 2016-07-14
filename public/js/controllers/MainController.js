@@ -5,15 +5,38 @@
   MainControllerF.$inject = ['$scope', 'NFLBreedersService'];
 
   function MainControllerF($scope, NFLBreedersService){
-    var breeders = NFLBreedersService.breeders;
-    NFLBreedersService.readAll()
-                      .then(function(){
-                        breeders = NFLBreedersService.breeders;
-                        console.log(breeders);
-                      });
+    $scope.nflBreeders = NFLBreedersService.nflBreeders;
+    $scope.create = createNFLBreeder;
+    $scope.delete = deleteNFLBreeder;
+    getNFLBreeders();
 
-    NFLBreedersService.create();
-    NFLBreedersService.delete();
-    NFLBreedersService.update();
+    function getNFLBreeders(){
+      NFLBreedersService.readAll()
+                        .then(function(){
+                          $scope.nflBreeders = NFLBreedersService.nflBreeders;
+                          console.log($scope.nflBreeders);
+                        });
+    }
+    function createNFLBreeder(breedingCategory, sellsTo, shipsStock, cityState, stockInBreeding, sellableStock, contactBreeder){
+      NFLBreedersService.create(breedingCategory, sellsTo, shipsStock, cityState, stockInBreeding, sellableStock, contactBreeder)
+                        .then(function(){
+                          $scope.breedingCategory = "";
+                          $scope.sellsTo = "";
+                          $scope.shipsStock = "";
+                          $scope.cityState = "";
+                          $scope.stockInBreeding = "";
+                          $scope.sellableStock = "";
+                          $scope.contactBreeder = "";
+                          getNFLBreeders();
+                        });
+    }
+    function deleteNFLBreeder(id){
+      console.log(id);
+      NFLBreedersService.delete(id)
+                        .then(function(){
+                          getNFLBreeders();
+                        });
+    }
+
   }
 })();
