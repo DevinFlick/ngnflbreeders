@@ -15,6 +15,7 @@
                         .then(function(){
                           $scope.nflBreeders = NFLBreedersService.nflBreeders;
                           console.log($scope.nflBreeders);
+
                         });
     }
     function createNFLBreeder(breedingCategory, sellsTo, shipsStock, cityState, stockInBreeding, sellableStock, contactBreeder){
